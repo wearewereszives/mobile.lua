@@ -243,10 +243,11 @@ local function loadUiLibrary()
     end
 
     local _loader = loadstring or load
-    local urls = {
-        "https://raw.githubusercontent.com/wearewereszives/mobile.lua/refs/heads/main/mobile.lua",
-        "https://gist.githubusercontent.com/rojosinsane-dev/d38fd3b74c4556f16ebcafb61f914f06/raw",
-        "https://gist.githubusercontent.com/rojosinsane-dev/620314eb301f276da6f2eda4c8097c11/raw"
+    local urls = isMobile and {
+        "https://raw.githubusercontent.com/wearewereszives/mobile.lua/refs/heads/main/mobile.lua"
+    } or {
+        "https://gist.githubusercontent.com/rojosinsane-dev/620314eb301f276da6f2eda4c8097c11/raw",
+        "https://gist.githubusercontent.com/rojosinsane-dev/d38fd3b74c4556f16ebcafb61f914f06/raw"
     }
 
     for _, url in ipairs(urls) do
@@ -494,6 +495,7 @@ if isMobile then
     task.spawn(function()
         waitMap()
         while true do
+            task.wait()
             if not killAllOn then
                 task.wait(0.1)
             elseif not found then
@@ -1151,7 +1153,7 @@ if isMobile then
 
             local leftTabs = Window.Items and Window.Items["LeftTabs"] and Window.Items["LeftTabs"].Instance
             if leftTabs then
-                leftTabs.Size = UDim2.new(0, 170, 1, 0)
+                leftTabs.Size = UDim2.new(0, 220, 1, 0)
             end
 
             for _, page in ipairs(Window.Pages or {}) do
@@ -2155,6 +2157,7 @@ else
     task.spawn(function()
         waitMap()
         while true do
+            task.wait()
             if not killAllOn then
                 task.wait(0.1)
             elseif not found then
